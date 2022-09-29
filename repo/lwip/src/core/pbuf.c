@@ -239,12 +239,6 @@ struct pbuf * pbuf_alloc(pbuf_layer layer, u16_t length, pbuf_type type)
 #endif
   LWIP_DEBUGF(PBUF_DEBUG | LWIP_DBG_TRACE, ("pbuf_alloc(length=%"U16_F")\n", length));
 
-#if defined(LWIP_NETIF_TX_ZEROCP_ENABLE) && (LWIP_NETIF_TX_ZEROCP_ENABLE == 1)
-	/* TX sometimes use this, need reserve for TXD */
-  if (PBUF_RAW == layer) {
-    offset = PBUF_LINK_ENCAPSULATION_HLEN;
-  }
-#endif
   switch (type) {
     case PBUF_REF: /* fall through */
     case PBUF_ROM:
